@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductRequest;
 use App\Models\Product;
+use Illuminate\Support\Facades\Log;
 
 class ProductController extends Controller
 {
@@ -13,6 +14,8 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::all();
+        Log::info('Fetched Products:', $products->toArray());
+        // dd($products->toSql());
 
         return response()->json($products);
     }
